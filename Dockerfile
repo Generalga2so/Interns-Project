@@ -1,13 +1,26 @@
-# Stage 1: Build the Angular app
-FROM node:14 as build-stage
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+# Use the official Node.js image as the base image
+FROM node:14
 
-# Stage 2: Create a lightweight production image
-FROM nginx:alpine-slim as production-stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the package.json and package-lock.json files to the working directory
+COPY package*.json ./
+
+# Install the project dependencies
+RUN npm install
+
+# Install Angular CLI globally
+RUN npm install -g @angular/cli
+
+# Copy the entire project to the working directory
+COPY . .
+
+# Build the Angular project
+RUN ng build --prod
+
+# Set up a simple HTTP server to serve the built Angular app
+RUN npm install -g http-server
+
+# Set the command to start the server when the container starts
+CMD ["http-server", "dist/r-ventory-web-ui"]
