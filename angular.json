@@ -106,9 +106,15 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
   },
-  "defaultProject": "R-ventory-WebUI"
+  "defaultProject": "R-ventory-WebUI",
+  "cli": {
+    "analytics": false
+  }
 }
