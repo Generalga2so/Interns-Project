@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: ng build --prod --base-href "/R-ventory-WebUI/"
+        run: ./node_modules/.bin/ng build --prod --base-href "/R-ventory-WebUI/"
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
