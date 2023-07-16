@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: aoa7clothings/rventory:latest
+          tags: aoa7clothings/r-ventory-web-ui:latest
